@@ -468,34 +468,11 @@ What it proves:
 
 ---
 
-## 11. Hackathon Demo Flow
 
-The hackathon demo should use a realistic end-to-end scenario within the existing replay/simulation environment.
-
-### Scenario
-
-A simulated campus scenario is selected from the replay dataset where occupancy is low, HVAC is on, and the operating condition indicates a mismatch between scheduled occupancy and active system state.
-
-### Demo Steps
-
-1. Load the replay context.
-2. Show energy context and forecast state.
-3. Highlight the detected issue as a HVAC mismatch or equivalent opportunity.
-4. Show the diagnosis and the reason in plain language.
-5. Show the recommended action and the what-if estimate.
-6. Execute the action through the SIMULATED adapter.
-7. Show the verification result.
-8. Show the resulting load change and interval energy impact.
-9. Show audit record and provenance metadata.
-10. Clearly state that this is a simulated demo only.
-
-### Required Statement
-
-The demo must explicitly state: device control is simulated, not real campus control.
 
 ---
 
-## 12. Remaining Implementation Phases
+## 11. Remaining Implementation Phases
 
 After Phase 5.0, the remaining work is divided into future phases. Each phase below includes objective, expected files/modules, tests, provenance, dependencies, and scope restrictions.
 
@@ -626,54 +603,5 @@ Scope restrictions:
 
 ---
 
-## 13. Risks and Open Questions
-
-### Current Gaps
-
-- No genuine campus energy telemetry.
-- No genuine control API.
-- No LLM connection.
-- No UI/dashboard implementation.
-- AEP regional semantics are not campus-level telemetry.
-- Weather temporal mismatch exists between current AEP and Open-Meteo samples.
-- EIA validation remains deferred.
-
-### Key Risks
-
-- Overstating the reliability of regional energy data as campus data.
-- Confusing real execution with simulated execution.
-- Inadvertently introducing fake campus telemetry.
-- Treating the LLM as a control authority rather than a presentation layer.
-- Trying to add TESTBED/REAL semantics before the safety and provenance model is complete.
-
-### Open Questions
-
-- What exact campus telemetry will be used when genuine campus data becomes available?
-- Which testbed environment, if any, is authorized for future integration?
-- What safety criteria must be satisfied before TESTBED or REAL execution is allowed?
-- Which dashboard functions are minimal but sufficient for the final prototype?
-- What are the acceptable thresholds for forecast and action metrics in the final evaluation?
-
----
-
-## 14. Definition of Done for the Final Prototype
-
-The final prototype is considered complete only when all of the following are true:
-
-1. The architecture is clearly labeled by provenance class.
-2. Only SIMULATED execution is enabled in the prototype.
-3. The deterministic decision engine remains the source of truth.
-4. The LLM is limited to explanation and interaction, not device control.
-5. The AEP and Open-Meteo data semantics are clearly documented and not conflated.
-6. No fake campus telemetry is introduced.
-7. The UI presents a clear, explainable, simulated decision flow.
-8. All actions and results are logged with provenance and audit metadata.
-9. Forecast quality and operational metrics are computed and reported.
-10. The demo follows a realistic replay/simulation scenario with clear simulation labeling.
-11. The system is honest about all current gaps and future deferred work.
-
----
-
-## Summary
 
 Phase 5.0 establishes the architecture for a deterministic, provenance-aware, simulation-first prototype. It preserves the completed bounded proactive loop, keeps LLM functionality clearly non-authoritative, keeps control strictly in SIMULATED mode, and defines a future path for TESTBED and REAL activation without slipping into unsupported claims. The document intentionally does not invent APIs, external integrations, or production control capabilities that are not presently implemented.
